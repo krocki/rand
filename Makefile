@@ -1,7 +1,7 @@
 .SUFFIXES:
 TARGETS=main
 CC=gcc
-CFLAGS=-g -Wfatal-errors -O1 -fomit-frame-pointer
+CFLAGS=-g -Wfatal-errors -O2 -fomit-frame-pointer
 DEPS=$(wildcard *.h) Makefile
 #OBJS=rand.o
 #$(objects:.o=.c)
