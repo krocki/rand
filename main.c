@@ -11,6 +11,8 @@ double get_time() {
   return (tv.tv_sec + tv.tv_usec * 1e-6);
 }
 
+#define M 8
+
 int main(int argc, char **argv) {
 
   u64 N = argc > 1 ?
@@ -42,8 +44,21 @@ int main(int argc, char **argv) {
     (double)(ce-cs)/(double)N,
     (double)N/(1e6 * (t1-t0+eps)));
 
+  /* a simple test */
+  u64 *hist = calloc(M, sizeof(u64));
+
+  for (u64 i=0; i<N; i++) {
+    u64 v = arr[i];
+    hist[v % M]++;
+  }
+
+  for (u64 j=0; j<M; j++) {
+    printf("[%2llu]: %llu\n", (llu)j, (llu)hist[j]);
+  }
+
   /* free */
   if (arr) free(arr);
+  if (hist) free(hist);
 
   return 0;
 }
